@@ -6,16 +6,16 @@
 
 services:
 
-  nginx:
-    image: nginx:latest
-    restart: always
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-      - ./wordpress:/var/www/html
-    networks:
-      - app-network 
+  # nginx:
+  #   image: nginx:latest
+  #   restart: always
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - ./nginx:/etc/nginx/conf.d
+  #     - ./wordpress:/var/www/html
+  #   networks:
+  #     - app-network 
 
 
   wordpress:
