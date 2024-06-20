@@ -1,0 +1,51 @@
+# Cấu hình docker-compose cho 2 services: wordpress, nginx
+# Sử dụng phiên bản mới nhất của nginx từ Docker Hub
+# Mount thư mục hiện tại vào các thư mục của container
+# Mở cổng 8080 của máy host và map vào cổng 80 của container wordpress
+# Mở cổng 80 của máy host và map vào cổng 80 của container nginx
+
+services:
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./wordpress:/var/www/html
+    networks:
+      - app-network 
+
+
+  wordpress:
+  # Trường hợp muốn build image từ local
+    build:
+      context: ./wordpress
+
+  # Trường hợp muốn lấy image từ docker repository
+    #image: dinhhongkong/demo_wordpress_cicd:latest
+    container_name: wordpress
+    restart: always
+    env_file: .env
+    ports:
+      - "8080:80"   
+    environment:
+      WORDPRESS_DB_HOST: ${MYSQL_HOST}
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+    volumes:
+      - ./wordpress:/var/www/html
+    networks:
+      - app-network    
+        
+
+volumes:
+  mysql:
+  wordpress:
+
+
+networks:
+  app-network:
+    driver: bridge
