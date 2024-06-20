@@ -20,11 +20,11 @@ services:
 
   wordpress:
   # Trường hợp muốn build image từ local
-    build:
-      context: ./wordpress
+    # build:
+    #   context: ./wordpress
 
   # Trường hợp muốn lấy image từ docker repository
-    #image: dinhhongkong/demo_wordpress_cicd:latest
+    image: nhuttruong912/demo_wordpress_cicd:latest
     container_name: wordpress
     restart: always
     env_file: .env
