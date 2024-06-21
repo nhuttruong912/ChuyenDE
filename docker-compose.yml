@@ -23,7 +23,7 @@ services:
     # build:
     #   context: ./wordpress
 
-  # Trường hợp muốn lấy image từ docker repository
+  # Trường hợp muốn pull image từ docker repository
     image: nhuttruong912/demo_wordpress_cicd:latest
     container_name: wordpress
     restart: always
