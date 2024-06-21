@@ -41,11 +41,15 @@ services:
       - app-network    
         
 
-volumes:
+volumes: #Định nghĩa các volumes mà Docker Compose sẽ quản lý.
   mysql:
   wordpress:
 
 
-networks:
-  app-network:
+networks: #Định nghĩa các mạng mà Docker Compose sẽ quản lý.
+  app-network: #tên
     driver: bridge
+    #Sử dụng driver bridge để tạo mạng. 
+    # Đây là loại mạng mặc định trong Docker. 
+    # Mạng bridge tạo ra một mạng riêng biệt cho các container để chúng có
+    #  thể giao tiếp với nhau một cách an toàn và hiệu quả.
